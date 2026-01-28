@@ -1,0 +1,48 @@
+###################################################################
+#
+# Authors: Tom Kralidis <tomkralidis@gmail.com>
+#
+# Copyright (c) 2026 Tom Kralidis
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+###################################################################
+
+FROM geopython/pygeoapi:latest
+
+LABEL maintainer="Tom Kralidis <tomkralidis@gmail.com>"
+
+ENV PYGEOAPI_CONFIG=/pygeoapi/local.config.yml
+ENV PYGEOAPI_OPENAPI=/pygeoapi/local.openapi.yml
+
+COPY ./docker/ogcapi-sprint-heif-demo.config.yml /pygeoapi/local.config.yml
+COPY ./plugins/providers/heifmap.py /pygeoapi/pygeoapi/provider/heifmap.py
+
+RUN apt-get update && \
+    apt-get install -y curl libheif-dev vim git && \
+    /venv/bin/pip3 install pillow-heif && \
+    chgrp -R 0 /pygeoapi && \
+    chmod -R g=u /pygeoapi
+
+USER 1001
+
+ENTRYPOINT ["/entrypoint.sh"]
