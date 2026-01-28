@@ -66,6 +66,7 @@ class HEIFMapProvider(BaseProvider):
         self.crs_list = [self.crs]
         self.styles = []
         self.default_format = 'png'
+        LOGGER.debug(f'OPTIONS: {self.options}')
 
     def query(self, style=None, bbox=[], width=500, height=300, crs='CRS84',
               datetime_=None, format_='png', transparent=True, **kwargs):
@@ -98,11 +99,12 @@ class HEIFMapProvider(BaseProvider):
                                 heif_data.data, 'raw')
 
         array = np.array(image)
-        height, width, channels = array.shape
+        iheight, iwidth, channels = array.shape
+        channels = array.shape[2]
 
         LOGGER.debug('Creating in memory dataset')
         drv = gdal.GetDriverByName('MEM')
-        ds = drv.Create('', width, height, channels, gdal.GDT_Byte)
+        ds = drv.Create('', iwidth, iheight, channels, gdal.GDT_Byte)
 
         LOGGER.debug(f'Writing {channels} channels')
         for i in range(channels):
@@ -114,26 +116,30 @@ class HEIFMapProvider(BaseProvider):
         ds.SetProjection(srs.ExportToWkt())
 
         LOGGER.debug('Performing affine transformation')
-        minx, miny, maxx, maxy = bbox
+        minx, miny, maxx, maxy = self.options['bbox']
         ds.SetGeoTransform([
             minx,
-            (maxx - minx)/width,
+            (maxx - minx)/iwidth,
             0,
             maxy,
             0,
-            -(maxy - miny)/height
+            -(maxy - miny)/iheight
         ])
+
+        for i in range(1, ds.RasterCount + 1):
+            ds.GetRasterBand(i).SetNoDataValue(0)
 
         LOGGER.debug('clipping dataset to map query')
         ds2 = gdal.Warp(
             '', ds, outputBounds=bbox,
-            dstSRS=self.crs, format="MEM",
+            dstSRS=self.crs, format='MEM',
+            dstAlpha=True,
             width=width,
             height=height
         )
 
         LOGGER.debug('Writing to virtual {IMAGE_FORMATS[format_}')
-        vsipath = "/vsimem/heifout.png"
+        vsipath = '/vsimem/heifout.png'
         gdal.GetDriverByName(IMAGE_FORMATS[format_]).CreateCopy(vsipath, ds2)
 
         f = gdal.VSIFOpenL(vsipath, 'rb')
