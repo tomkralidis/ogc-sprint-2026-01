@@ -96,3 +96,27 @@ resources:
                   x_field: long
                   y_field: lat
 
+    heif-demo:
+        type: collection
+        title: HEIF demo
+        description: HEIF demo
+        keywords:
+            - HEIF
+            - demo
+        links:
+            - type: text/html
+              rel: canonical
+              title: information
+              href: https://github.com/opengeospatial/developer-events/wiki/2026-Joint-OGC-%E2%80%93-OSGeo-%E2%80%93-ASF-Code-Sprint
+              hreflang: en-US
+        extents:
+            spatial:
+                bbox: [138.494192, -34.804844, 138.498669, -34.800998]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: map
+              name: pygeoapi.provider.heifmap.HEIFMapProvider
+              data: /data/tb21-single-image-hevc.heif
+              format:
+                    name: png
+                    mimetype: image/png
