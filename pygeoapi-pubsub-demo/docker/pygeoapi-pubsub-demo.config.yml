@@ -20,15 +20,15 @@ server:
         connection: /tmp/registration-api-process-manager.db
         output_dir: /tmp/
 
-pubsub:
-    name: MQTT
-    broker:
-        url: mqtt://pygeoapi-pubsub-demo:pygeoapi-pubsub-demo@mqtt-broker:1883
-
 #pubsub:
-#    name: HTTP
+#    name: MQTT
 #    broker:
-#        url: http://http-broker
+#        url: mqtt://pygeoapi-pubsub-demo:pygeoapi-pubsub-demo@mqtt-broker:1883
+
+pubsub:
+    name: HTTP
+    broker:
+        url: http://http-broker
 
 
 logging:
