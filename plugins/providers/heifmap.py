@@ -68,7 +68,7 @@ class HEIFMapProvider(BaseProvider):
         self.default_format = 'png'
         LOGGER.debug(f'OPTIONS: {self.options}')
 
-    def query(self, style=None, bbox=[], width=500, height=300, crs='CRS84',
+    def query(self, style=None, bbox=[], width=800, height=600, crs='CRS84',
               datetime_=None, format_='png', transparent=True, **kwargs):
         """
         Generate map
