@@ -51,6 +51,8 @@ services:
     image: binwiederhier/ntfy:latest
     command: serve
     restart: unless-stopped
+    volumes:
+        - ./http-broker/ntfy:/etc/ntfy
     networks:
       - pygeoapi-pubsub-demo-net
     <<: *logging

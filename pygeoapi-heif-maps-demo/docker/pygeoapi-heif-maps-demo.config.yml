@@ -2,7 +2,8 @@ server:
     bind:
         host: 0.0.0.0
         port: 80
-    url: http://localhost:8999
+    #url: http://localhost:8999
+    url: https://37e048b194f170.lhr.life
     mimetype: application/json; charset=UTF-8
     encoding: utf-8
     gzip: false

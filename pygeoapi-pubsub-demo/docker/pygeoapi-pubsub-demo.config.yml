@@ -21,9 +21,15 @@ server:
         output_dir: /tmp/
 
 pubsub:
-    name: HTTP
+    name: MQTT
     broker:
-        url: http://http-broker
+        url: mqtt://pygeoapi-pubsub-demo:pygeoapi-pubsub-demo@mqtt-broker:1883
+
+#pubsub:
+#    name: HTTP
+#    broker:
+#        url: http://http-broker
+
 
 logging:
     level: DEBUG
@@ -99,3 +105,8 @@ resources:
               time_field: created
               title_field: title
               editable: true
+
+    hello-world:
+        type: process
+        processor:
+            name: HelloWorld

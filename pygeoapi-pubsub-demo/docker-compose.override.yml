@@ -31,3 +31,10 @@ services:
   pygeoapi-pubsub-demo-api:
     ports:
       - 9888:80  # default
+  mqtt-broker:
+    ports:
+      - 1883:1883
+      - 1884:1884
+  http-broker:
+    ports:
+      - 5003:80

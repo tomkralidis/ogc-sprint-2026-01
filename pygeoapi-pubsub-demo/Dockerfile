@@ -39,6 +39,7 @@ COPY ./docker/pygeoapi-pubsub-demo.config.yml /pygeoapi/local.config.yml
 
 RUN apt-get update && \
     /venv/bin/pygeoapi asyncapi generate $PYGEOAPI_CONFIG -of $PYGEOAPI_ASYNCAPI && \
+    /venv/bin/pip3 install paho-mqtt && \
     chgrp -R 0 /pygeoapi && \
     chmod -R g=u /pygeoapi
 
