@@ -38,7 +38,7 @@ COPY ./docker/pygeoapi-heif-maps-demo.config.yml /pygeoapi/local.config.yml
 COPY ./plugins/providers/heifmap.py /pygeoapi/pygeoapi/provider/heifmap.py
 
 RUN apt-get update && \
-    apt-get install -y curl libheif-dev vim git && \
+    apt-get install -y curl libheif-dev && \
     /venv/bin/pip3 install pillow-heif && \
     chgrp -R 0 /pygeoapi && \
     chmod -R g=u /pygeoapi

@@ -38,6 +38,7 @@ ENV PYGEOAPI_ASYNCAPI=/pygeoapi/local.asyncapi.yml
 COPY ./docker/pygeoapi-pubsub-demo.config.yml /pygeoapi/local.config.yml
 
 RUN apt-get update && \
+    apt-get install -y curl && \
     /venv/bin/pygeoapi asyncapi generate $PYGEOAPI_CONFIG -of $PYGEOAPI_ASYNCAPI && \
     /venv/bin/pip3 install paho-mqtt && \
     chgrp -R 0 /pygeoapi && \
