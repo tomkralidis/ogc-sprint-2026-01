@@ -37,12 +37,12 @@ x-logging: &logging
       max-file: 1
 
 services:
-  ogcapi-sprint-heif-demo-api:
-    container_name: ogcapi-sprint-heif-demo-api
+  pygeoapi-heif-maps-demo:
+    container_name: pygeoapi-heif-maps-demo
     build:
       context: ./
     volumes:
-      - ogcapi-sprint-heif-demo-api-data:/data
+      - pygeoapi-heif-maps-demo-data:/data
       - ./T21-GIMI-main-data-NGA_Sample_Data-2025-12-tb21-data-v2/data/NGA_Sample_Data/2025-12-tb21-data-v2:/data:rw
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/conformance"]
@@ -57,4 +57,4 @@ networks:
   ogcapi-sprint-heif-demo-net:
 
 volumes:
-  ogcapi-sprint-heif-demo-api-data:
+  pygeoapi-heif-maps-demo-data:

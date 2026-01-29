@@ -34,7 +34,7 @@ LABEL maintainer="Tom Kralidis <tomkralidis@gmail.com>"
 ENV PYGEOAPI_CONFIG=/pygeoapi/local.config.yml
 ENV PYGEOAPI_OPENAPI=/pygeoapi/local.openapi.yml
 
-COPY ./docker/ogcapi-sprint-heif-demo.config.yml /pygeoapi/local.config.yml
+COPY ./docker/pygeoapi-heif-maps-demo.config.yml /pygeoapi/local.config.yml
 COPY ./plugins/providers/heifmap.py /pygeoapi/pygeoapi/provider/heifmap.py
 
 RUN apt-get update && \

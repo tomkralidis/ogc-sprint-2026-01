@@ -28,6 +28,6 @@
 ###################################################################
 
 services:
-  ogcapi-sprint-heif-demo-api:
+  pygeoapi-heif-maps-demo:
     ports:
       - 8999:80  # default

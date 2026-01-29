@@ -27,7 +27,7 @@
 #
 ###################################################################
 
-PROJECT_NAME=ogcapi-sprint-heif-demo-api
+PROJECT_NAME=pygeoapi-heif-maps-demo
 
 DOCKER_COMPOSE_ARGS=--project-name ${PROJECT_NAME} --file docker-compose.yml --file docker-compose.override.yml
 
@@ -38,7 +38,7 @@ force-build:
 	docker compose $(DOCKER_COMPOSE_ARGS) build --no-cache
 
 login:
-	docker exec -it ogcapi-sprint-heif-demo-api /bin/bash
+	docker exec -it pygeoapi-heif-maps-demo /bin/bash
 
 up:
 	docker compose $(DOCKER_COMPOSE_ARGS) up --detach --remove-orphans
