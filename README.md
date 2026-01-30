@@ -5,4 +5,4 @@ Demonstration of pygeoapi, Pub/Sub, OGC API - Publish-Subscribe, libheif and OGC
 This repository contains the following Docker Compose based demonstrations:
 
 - [pygeoapi-heif-maps-demo](https://github.com/tomkralidis/ogc-sprint-2026-01/tree/main/pygeoapi-heif-maps-demo): pygeoapi custom OGC API - Maps provider for HEIF
-- [pygeoapi-pubsub-demo](https://github.com/tomkralidis/ogc-sprint-2026-01/tree/main/pygeoapi-pubsub-demo): pygeoapi implementation of OGC API - Publish-Subscribe
+- [pygeoapi-pubsub-demo](https://github.com/geopython/pygeoapi-examples/tree/main/pubsub): pygeoapi implementation of OGC API - Publish-Subscribe
